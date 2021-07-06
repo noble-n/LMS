@@ -1,0 +1,233 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - LibraryManagementSystem</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <style>
+
+        #navigationBar {
+            /*box-shadow: 0px 1px 10px 10px #ddd;*/
+            height: auto;
+            text-align: center;
+            width: 100%;
+        }
+
+            #navigationBar > ul > li {
+                display: inline;
+                font-size: large;
+            }
+
+        ul {
+            margin-left: 700px;
+        }
+
+        #navigationBar > ul > li > a {
+            color: black;
+            display: inline-block;
+            height: 20px;
+            line-height: 60px;
+            margin: 0px;
+            padding: 0px 10px;
+            margin-top: -60px;
+            text-decoration: none;
+        }
+
+            #navigationBar > ul > li > a:hover {
+                color: #FCD000;
+            }
+
+
+        .div1 {
+            width: 100%;
+            height: 400px;
+            background-image: url(/images/wide-book-shelves-blurry-effect-260nw-1175199175.jpg);
+            text-align: center;
+        }
+
+        h1 {
+            padding-top: 50px;
+            font-size: 90px;
+            color: white;
+        }
+
+        h2 {
+            text-align: center;
+            color: #272424;
+            margin-top: 100px;
+        }
+
+        p1 {
+            color: white;
+            width: 1100px;
+            height: 300px;
+            margin-top: 100px;
+        }
+
+        .pricing-wrapper {
+            width: 960px;
+            margin: 40px auto 0;
+        }
+
+        ii {
+            width: 120px;
+            height: 120px;
+        }
+
+        .imgs {
+            width: 100px;
+            height: 100px;
+        }
+
+        .pricing-table {
+            margin: 0 10px;
+            text-align: center;
+            width: 300px;
+            float: left;
+            -webkit-box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            -webkit-transition: all 0.25s ease;
+            -o-transition: all 0.25s ease;
+            transition: all 0.25s ease;
+            margin-bottom: 50px;
+        }
+
+            .pricing-table:hover {
+                -webkit-transform: scale(1.06);
+                -ms-transform: scale(1.06);
+                -o-transform: scale(1.06);
+                transform: scale(1.06);
+            }
+
+        .pricing-title {
+            color: #2c1509;
+            padding: 20px 0;
+            font-size: 2em;
+            text-transform: uppercase;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+        }
+
+        .table-buy {
+            background: #FFF;
+            padding: 25px;
+            text-align: left;
+            overflow: hidden;
+        }
+
+            .table-buy .pricing-action:hover {
+                background: #cf4f3e;
+            }
+
+        .recommended .table-buy .pricing-action:hover {
+            background: #228799;
+        }
+        .ss{
+            margin-right:1000px;
+            margin-bottom:-40px;
+         padding-bottom:10px;
+         padding-top:-10px;
+           font-size:larger;
+           width:350px;
+           position:absolute;
+           text-decoration:underline;
+           font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+
+        }
+    </style>
+</head>
+<body>
+    <nav id="navigationBar">
+        <div  class="ss">
+            <p class="ss">LIBRARY MANAGEMENT SYSTEM</p>
+        </div>
+           
+
+        
+        <ul>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Students" asp-action="Index">Student</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Books" asp-action="Index">Book</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="CheckOuts" asp-action="Index">Checkout History</a>
+            </li>
+            <li>
+                <a class="nav-link text-dark" asp-area="" asp-controller="CheckOuts" asp-action="SearchRef">Check-In</a>
+            </li>
+
+
+        </ul>
+    </nav>
+
+    <div class="div1">
+
+    </div>
+    <div class="pricing-wrapper clearfix">
+        <div class="pricing-table">
+            <h3 class="pricing-title"> Add Student</h3>
+
+            <a asp-action="Create" asp-controller="Students" class="pricing-action "><img class="imgs" src="~/images/addstudent.jpg" /></a>
+
+            <div class="table-buy">
+                <p>  </p>
+
+            </div>
+        </div>
+
+        <div class="pricing-table">
+            <h3 class="pricing-title"> Add Book</h3>
+
+            <a asp-action="Create" asp-controller="Books" class="pricing-action "><img class="imgs" src="~/images/addbook.jpg" /></a>
+
+            <div class="table-buy">
+                <p>  </p>
+
+            </div>
+        </div>
+
+        <div class="pricing-table ii">
+            <h3 class="pricing-title">Check-In Book</h3>
+
+            <a asp-action="SearchRef" asp-controller="CheckOuts" class="pricing-action "><img class="imgs" src="~/images/check.png" /></a>
+
+            <div class="table-buy">
+                <p>  </p>
+
+            </div>
+        </div>
+
+        <div class="pricing-table ii">
+            <h3 class="pricing-title">Check-Out Book</h3>
+
+            <a asp-action="Index" asp-controller="Books" class="pricing-action "><img class="imgs" src="~/images/checkout.png" /></a>
+
+            <div class="table-buy">
+                <p>  </p>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

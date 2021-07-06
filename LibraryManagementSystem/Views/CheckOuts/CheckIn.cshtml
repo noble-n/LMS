@@ -1,0 +1,59 @@
+﻿@model LibraryManagementSystem.Models.CheckOut
+
+@{
+    ViewData["Title"] = "CheckIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>CheckOut</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Book ISBN
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Book.ISBN)
+        </dd>
+        <dt class="col-sm-2">
+            Student Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Student.FirstName)   @Html.DisplayFor(model => model.Student.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckOutDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CheckOutDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CheckInDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CheckInDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.AmountDefaulted)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.AmountDefaulted)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CheckOutId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+    @if (!Model.IsCheckedIn)
+    {
+        <form asp-action="CheckOut" method="post">
+            <input asp-for="CheckOutId" type="hidden" />
+            <div class="form-group">
+                <input type="submit" value="Checkin" class="btn btn-danger" />
+            </div>
+        </form>
+    }
+</div>
+

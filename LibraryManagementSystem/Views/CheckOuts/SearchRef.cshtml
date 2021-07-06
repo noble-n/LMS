@@ -1,0 +1,152 @@
+﻿@model LibraryManagementSystem.ViewModels.LibraryVM
+@{
+    ViewData["Title"] = "SearchRef";
+}
+
+<h2>SearchRef</h2>
+
+<form asp-action="SearchRef">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="CheckOutRefNo" class="control-label"></label>
+        <input asp-for="CheckOutRefNo" class="form-control" />
+        <span asp-validation-for="CheckOutRefNo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Search" class="btn btn-primary" />
+    </div>
+
+
+    @if (Model.CheckOut != null)
+    {
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Book
+                    </th>
+
+                    <th>
+                        Student
+                    </th>
+                    <th>
+                        CheckOut Date
+                    </th>
+                    <th>
+                        CheckIn Date
+                    </th>
+                    <th>
+                        Expected CheckIn Date
+                    </th>
+                    <th>
+                        Amount Defaulted
+                    </th>
+                    <th>
+                        Checkin Status
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Model.CheckOut.Book.BookName
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CheckOut.Student.FirstName)  @Html.DisplayFor(modelItem => Model.CheckOut.Student.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CheckOut.CheckOutDate)
+                    </td>
+                    @if (@Model.CheckOut.IsCheckedIn == false)
+                    {
+                        <td>
+                            <p style="color:red">N/A</p>
+                        </td>
+                    }
+                    @if (@Model.CheckOut.IsCheckedIn == true)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CheckOut.CheckInDate)
+                        </td>
+                    }
+                    <td>
+                        @Html.DisplayFor(modelItem => Model.CheckOut.ExpectedCheckInDate)
+                    </td>
+                    @if (Model.CheckOut.ExpectedCheckInDate < DateTime.Now)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => Model.CheckOut.AmountDefaulted)
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            0
+                        </td>
+                    }
+
+                    @if (Model.CheckOut.IsCheckedIn)
+                    {
+                        <td>
+                            Checked IN
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            Not CheckedIN
+                        </td>
+                    }
+
+
+
+                </tr>
+
+            </tbody>
+        </table>
+
+        <p>Has payment been made</p>
+        <select name="choice" class="form-control" id="choice">
+            <option value="" selected>Please select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+        <br />
+        <br />
+
+       
+
+    }
+</form>
+<form asp-action="SearchRef">
+    @if (Model.CheckOut != null)
+    {
+        <input asp-for="CheckOutNotNull" value="yes" type="hidden" />
+        <input asp-for="CheckOutRefNo" type="hidden" />
+    }
+
+    <div id="checkinBtn" style="display:none">
+        <button type="submit" class="btn btn-danger">Check In</button>
+        @*<a asp-action="Delete" asp-route-id="@item.CheckOutId">Delete</a>*@
+    </div>
+</form>
+
+<script>
+
+    $(document).ready(function () {
+        $('#choice').on('change', function () {
+            if (this.value == 'Yes')
+            {
+                $("#checkinBtn").show();
+            }
+            else {
+                $("#checkinBtn").hide();
+            }
+        });
+    });
+
+</script>

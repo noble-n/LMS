@@ -1,0 +1,89 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Book>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:dodgerblue; text-decoration:underline; margin-bottom:40px;  margin-top:70px;">Book</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatePublished)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAvailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckoutDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DefaultAmount)
+            </th>
+            
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatePublished)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsAvailable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckoutDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultAmount)
+            </td>
+           
+            <td style="width:230px;">
+                <div class="form-group row">
+                    <a class="btn btn-primary btn-xs" asp-action="Edit" asp-route-id="@item.BookId">Edit</a> |
+                    <a class="btn btn-primary btn-xs" asp-action="Details" asp-route-id="@item.BookId">Details</a> |
+                    @if (item.IsAvailable)
+                    {
+                        <a class="btn btn-primary btn-xs" asp-action="CheckOut" asp-route-id="@item.BookId">CheckOut</a>
+
+                    }
+                    else
+                    {
+                        <span class="alert-danger" href="#">CheckedOut</span>
+
+                    }
+
+                    | <a class="btn btn-danger btn-xs" asp-action="Delete" asp-route-id="@item.BookId">Delete</a>
+                </div>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

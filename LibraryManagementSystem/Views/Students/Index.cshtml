@@ -1,0 +1,68 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:dodgerblue; text-decoration:underline; margin-bottom:40px;  margin-top:70px;">Student</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                Matric Number
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DOB)
+                </td>
+                <td>
+                    @item.MatricNumber
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.StudentId">Details</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.StudentId">Delete</a>|
+                    <a class="btn btn-primary" asp-action="CheckOutHistory" asp-route-id="@item.StudentId">CheckOutHistory</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

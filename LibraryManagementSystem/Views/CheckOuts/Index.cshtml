@@ -1,0 +1,97 @@
+﻿@model IEnumerable<LibraryManagementSystem.Models.CheckOut>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 style="color:dodgerblue; text-decoration:underline; margin-bottom:40px; margin-top:70px;">CheckOut History</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentId)
+            </th>
+            <th>
+                CheckOut-Ref
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckOutDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedCheckInDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountDefaulted)
+            </th>
+            <th>
+                Checkin Status
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.Book.BookName
+            </td>
+            <td>
+                ISBN:  @item.Book.ISBN
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)  @Html.DisplayFor(modelItem => item.Student.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOutRef)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOutDate)
+            </td>
+            @if (!item.IsCheckedIn)
+            {
+                <td>
+                    <p style="color:red">N/A</p>
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.CheckInDate)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedCheckInDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaultAmount)
+            </td>
+            @if (item.IsCheckedIn)
+            {
+                <td>
+                    Checked IN
+                </td>
+            }
+            else
+            {
+                <td>
+                    Not CheckedIN
+                </td>
+            }
+
+
+        </tr>
+}
+    </tbody>
+</table>
